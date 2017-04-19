@@ -1,0 +1,11 @@
+@import '~roboto-fontface/css/roboto/roboto-fontface.css';
+@import '~@angular/material/prebuilt-themes/purple-green.css';
+
+body {
+    font-family: Roboto, sans-serif;
+    background-color: #EEEEEE;
+}
+
+.mat-checkbox-frame {
+    border-color: #757575;
+}

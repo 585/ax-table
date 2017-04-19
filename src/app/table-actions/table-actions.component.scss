@@ -1,0 +1,15 @@
+.table-actions {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    &__action {
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+    &__label {
+        color: #4A8BF1;
+        text-transform: uppercase;
+    }
+}

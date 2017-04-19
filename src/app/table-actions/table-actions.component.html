@@ -1,0 +1,7 @@
+<ul class="table-actions">
+    <li *ngFor="let action of actions" class="table-actions__action">
+        <button class="table-actions__label" md-button (click)="executeAction(action)">
+            {{action.label}}
+        </button>
+    </li>
+</ul>

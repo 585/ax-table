@@ -41,6 +41,9 @@ import { PaginationService } from '../services/pagination.service';
         MdButtonModule,
         NoopAnimationsModule
     ],
+    exports: [
+        AxTableComponent
+    ],
     providers: [
         SelectionService,
         PaginationService

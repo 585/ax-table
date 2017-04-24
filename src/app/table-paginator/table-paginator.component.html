@@ -1,3 +1,15 @@
-<p>
-  table-paginator works!
-</p>
+<span class="table-paginator">
+    <span class="table-paginator__page-size">
+        <span>Rows per page:</span>
+        <md-select [(ngModel)]="pageSize" (change)="setPageSize($event)">
+            <md-option *ngFor="let pageSize of [10, 20, 50]" [value]="pageSize">
+              {{pageSize}}
+            </md-option>
+      </md-select>
+    </span>
+    <span class="table-paginator__page-count">1-10 of 100</span>
+    <span class="table-paginator__page-switch">
+        <span class="table-paginator__page-switch-left" (click)="pageDown()"><</span>
+        <span class="table-paginator__page-switch-right" (click)="pageUp()">></span>
+    </span>
+</span>

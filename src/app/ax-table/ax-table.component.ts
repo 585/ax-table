@@ -1,7 +1,9 @@
-import { Component, Input, OnInit, Output, ViewChild, ViewChildren } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, ViewChildren } from '@angular/core';
 import { AxTableRowComponent } from '../ax-table-row/ax-table-row.component';
 import { AxTableHeaderComponent } from '../ax-table-header/ax-table-header.component';
-import { IAxTableRowSelection } from '../../services/selection.service';
+import { IAxTableRowSelection, SelectionService } from '../../services/selection.service';
+import { IAxTablePagination, PaginationService } from '../../services/pagination.service';
+import { SortService } from '../../services/sort.service';
 
 export interface IAxTableAction {
     label: string;
@@ -9,7 +11,7 @@ export interface IAxTableAction {
     enable(selection: IAxTableRowSelection[]): void;
 }
 
-interface IAxTableSetup {
+export interface IAxTableSetup {
     columns: IAxTableColumns[];
     actions: IAxTableAction[];
 }
@@ -25,62 +27,26 @@ interface IAxTableColumns {
     templateUrl: './ax-table.component.html',
     styleUrls: ['./ax-table.component.scss']
 })
-export class AxTableComponent implements OnInit {
+export class AxTableComponent {
 
     @ViewChildren(AxTableRowComponent) rows: AxTableRowComponent;
     @ViewChild(AxTableHeaderComponent) header: AxTableHeaderComponent;
+
     @Input() setup: IAxTableSetup;
     @Input() data: any[];
-    @Output() onPage;
-    @Output() onSort;
-    @Output() onSelect;
 
-    constructor() {
-        this.setup = {
-            columns: [
-                {
-                    key: 'name',
-                    label: 'Name',
-                    tooltip: 'Name'
-                },
-                {
-                    key: 'lastName',
-                    label: 'Last Name',
-                    tooltip: 'Name'
-                },
-                {
-                    key: 'birthday',
-                    label: 'Birthday',
-                    tooltip: 'Name'
-                },
-                {
-                    key: 'comment',
-                    label: 'Comment',
-                    tooltip: 'Name'
-                }
-            ],
-            actions: [
-                {
-                    label: 'Action1',
-                    callback: (selection: IAxTableRowSelection[]) => console.log('hello action!', selection),
-                    enable: (selection: IAxTableRowSelection[]) => console.log('hello enable action', selection)
-                },
-                {
-                    label: 'Action2',
-                    callback: (selection: IAxTableRowSelection[]) => console.log('hello action!', selection),
-                    enable: (selection: IAxTableRowSelection[]) => console.log('hello enable action', selection)
-                }
-            ]
-        };
-        this.data = [
-            {name: 'Denis', lastName: 'Havranek', birthday: '5/5/85', comment: 'Hey lalalala!'},
-            {name: 'Denis2', lastName: 'Havranek', birthday: '5/5/85', comment: 'Hey lalalala!'},
-            {name: 'Denis3', lastName: 'Havranek', birthday: '5/5/85', comment: 'Hey lalalala!'}
-        ];
-    }
+    @Output() onPage: EventEmitter<IAxTablePagination>;
+    @Output() onSort: EventEmitter<any>;
+    @Output() onSelect: EventEmitter<IAxTableRowSelection[]>;
 
-    ngOnInit() {
-        console.log(this.rows, this.header);
+    constructor(
+        private paginationService: PaginationService,
+        private selectionService: SelectionService,
+        private sortService: SortService
+    ) {
+        this.onPage = this.paginationService.$paginator;
+        this.onSelect = this.selectionService.$selection;
+        this.onSort = this.sortService.$sort;
     }
 
 }

@@ -1,0 +1,9 @@
+:host {
+    flex: 1;
+    padding: 15px;
+    font-size: .9rem;
+
+    .ax-table-cell-header {
+        cursor: pointer;
+    }
+}

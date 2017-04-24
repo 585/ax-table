@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MdButtonModule, MdCheckboxModule, MdIconModule, MdTooltipModule } from '@angular/material';
+import { MdButtonModule, MdCheckboxModule, MdIconModule, MdSelectModule, MdTooltipModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -17,6 +17,8 @@ import { TablePaginatorComponent } from './table-paginator/table-paginator.compo
 import { TableCheckboxCellComponent } from './table-checkbox-cell/table-checkbox-cell.component';
 import { SelectionService } from '../services/selection.service';
 import { PaginationService } from '../services/pagination.service';
+import { AxTableCellHeaderComponent } from './ax-table-cell-header/ax-table-cell-header.component';
+import { SortService } from '../services/sort.service';
 
 @NgModule({
     declarations: [
@@ -29,7 +31,8 @@ import { PaginationService } from '../services/pagination.service';
         AxTableActionHeaderComponent,
         TableActionsComponent,
         TablePaginatorComponent,
-        TableCheckboxCellComponent
+        TableCheckboxCellComponent,
+        AxTableCellHeaderComponent
     ],
     imports: [
         BrowserModule,
@@ -38,6 +41,7 @@ import { PaginationService } from '../services/pagination.service';
         MdCheckboxModule,
         MdTooltipModule,
         MdIconModule,
+        MdSelectModule,
         MdButtonModule,
         NoopAnimationsModule
     ],
@@ -46,7 +50,8 @@ import { PaginationService } from '../services/pagination.service';
     ],
     providers: [
         SelectionService,
-        PaginationService
+        PaginationService,
+        SortService
     ],
     bootstrap: [AppComponent]
 })

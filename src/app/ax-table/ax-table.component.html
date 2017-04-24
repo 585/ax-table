@@ -7,9 +7,9 @@
         <ax-table-cell>
             <md-checkbox color="primary"></md-checkbox>
         </ax-table-cell>
-        <ax-table-cell *ngFor="let col of setup.columns">
+        <ax-table-cell-header [key]="col.key" *ngFor="let col of setup.columns">
             <span [mdTooltip]="col.tooltip">{{col.label}}</span>
-        </ax-table-cell>
+        </ax-table-cell-header>
     </ax-table-header>
     <ax-table-row *ngFor="let object of data; let i = index">
         <ax-table-checkbox-cell [rowIndex]="i" [data]="object"></ax-table-checkbox-cell>

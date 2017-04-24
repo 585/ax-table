@@ -1,6 +1,4 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
 
 export interface IAxTableRowSelection {
     index: number;

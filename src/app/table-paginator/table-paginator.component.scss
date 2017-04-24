@@ -1,0 +1,44 @@
+:host {
+    color: #757575;
+    font-size: .9rem;
+
+    .table-paginator {
+        &__page-count {
+            display: inline-block;
+            margin-right: 35px;
+        }
+
+        &__page-switch {
+            display: inline-block;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        &__page-switch-left {
+            display: inline-block;
+            margin-right: 20px;
+
+            &:hover {
+                color: #000;
+            }
+        }
+
+        &__page-switch-right {
+            &:hover {
+                color: #000;
+            }
+        }
+
+        &__page-size {
+            display: inline-block;
+            margin-right: 35px;
+
+            md-select {
+                position: relative;
+                top: -4px;
+                left: 7px;
+                width: 40px;
+            }
+        }
+    }
+}

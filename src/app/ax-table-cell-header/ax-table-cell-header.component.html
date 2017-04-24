@@ -1,0 +1,5 @@
+<div class="ax-table-cell-header" (click)="sortColumn()">
+    <ng-content></ng-content>
+    <span *ngIf="sortOrder && sortOrder==='ASC'">^</span>
+    <span *ngIf="sortOrder && sortOrder==='DESC'">v</span>
+</div>

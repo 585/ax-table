@@ -1,3 +1,8 @@
 <h1>{{title}}</h1>
 
-<ax-table></ax-table>
+<ax-table
+    [setup]="setup" [data]="data"
+    (onPage)="onPage($event)"
+    (onSelect)="onSelect($event)"
+    (onSort)="onSort($event)">
+</ax-table>

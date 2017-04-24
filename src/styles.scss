@@ -1,5 +1,6 @@
 @import '~roboto-fontface/css/roboto/roboto-fontface.css';
-@import '~@angular/material/prebuilt-themes/purple-green.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import './app/table-paginator/table-paginator_global.scss';
 
 body {
     font-family: Roboto, sans-serif;
@@ -8,4 +9,8 @@ body {
 
 .mat-checkbox-frame {
     border-color: #757575;
+}
+
+.mat-select-trigger {
+    min-width: 45px !important;
 }

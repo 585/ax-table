@@ -5,7 +5,7 @@
     </ax-table-action-header>
     <ax-table-header>
         <ax-table-cell>
-            <md-checkbox color="primary"></md-checkbox>
+            <md-checkbox color="primary" [disableRipple]="true"></md-checkbox>
         </ax-table-cell>
         <ax-table-cell-header [key]="col.key" *ngFor="let col of setup?.columns">
             <span [mdTooltip]="col.tooltip">{{col.label}}</span>

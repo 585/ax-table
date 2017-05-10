@@ -23,17 +23,17 @@ export class AppComponent {
                 {
                     key: 'lastName',
                     label: 'Last Name',
-                    tooltip: 'Name'
+                    tooltip: 'Last Name'
                 },
                 {
                     key: 'birthday',
                     label: 'Birthday',
-                    tooltip: 'Name'
+                    tooltip: 'Birthday'
                 },
                 {
                     key: 'comment',
                     label: 'Comment',
-                    tooltip: 'Name'
+                    tooltip: 'Comment'
                 }
             ],
             actions: [
@@ -50,9 +50,9 @@ export class AppComponent {
             ]
         };
         this.data = [
-            {name: 'Denis', lastName: 'Havranek', birthday: '5/5/85', comment: 'Hey lalalala!'},
-            {name: 'Denis2', lastName: 'Havranek', birthday: '5/5/85', comment: 'Hey lalalala!'},
-            {name: 'Denis3', lastName: 'Havranek', birthday: '5/5/85', comment: 'Hey lalalala!'}
+            {name: 'Denis', lastName: 'Havranek', birthday: new Date().setMonth(5), comment: 'Hey lalalala!'},
+            {name: 'Denis2', lastName: 'Havranek', birthday: new Date(), comment: 'Hey lalalala!'},
+            {name: 'Denis3', lastName: 'Havranek', birthday: new Date(), comment: 'Hey lalalala!'}
         ];
     }
 

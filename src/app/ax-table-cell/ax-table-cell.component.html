@@ -1,1 +1,2 @@
-<ng-content></ng-content>
+<ng-content *ngIf="!customCell"></ng-content>
+<ng-template *ngTemplateOutlet="customCell?.template; context: {rowData: rowData, cellData: cellData}"></ng-template>

@@ -1,8 +1,17 @@
 <h1>{{title}}</h1>
 
-<ax-table
-    [setup]="setup" [data]="data"
-    (onPage)="onPage($event)"
-    (onSelect)="onSelect($event)"
-    (onSort)="onSort($event)">
+<ax-table [setup]="setup" [data]="data" (onPage)="onPage($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)">
+
+    <ax-custom-cell key="name">
+        <ng-template #customCell let-data="cellData" let-row="rowData">
+            {{data}} {{row.lastName}}
+        </ng-template>
+    </ax-custom-cell>
+
+    <ax-custom-cell key="birthday">
+        <ng-template #customCell let-cell="cellData">
+            {{cell}}
+        </ng-template>
+    </ax-custom-cell>
+
 </ax-table>

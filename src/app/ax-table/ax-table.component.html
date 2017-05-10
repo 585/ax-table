@@ -1,8 +1,9 @@
 <div class="ax-table" *ngIf="setup">
+
     <ax-table-action-header>
-        <!--<md-icon svgIcon="thumbs-up" color="black"></md-icon>-->
         <ax-table-actions [actions]="setup?.actions"></ax-table-actions>
     </ax-table-action-header>
+
     <ax-table-header>
         <ax-table-cell>
             <md-checkbox color="primary" [disableRipple]="true"></md-checkbox>
@@ -11,11 +12,13 @@
             <span [mdTooltip]="col.tooltip">{{col.label}}</span>
         </ax-table-cell-header>
     </ax-table-header>
+
     <ax-table-row *ngFor="let object of data; let i = index">
         <ax-table-checkbox-cell [rowIndex]="i" [data]="object"></ax-table-checkbox-cell>
-        <ax-table-cell *ngFor="let col of setup?.columns">
+        <ax-table-cell *ngFor="let col of setup?.columns" [customCell]="getCustomCell(col.key)" [rowData]="object" [cellData]="object[col.key]">
             {{object[col.key]}}
         </ax-table-cell>
     </ax-table-row>
+
     <ax-table-footer></ax-table-footer>
 </div>

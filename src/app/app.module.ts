@@ -19,6 +19,7 @@ import { SelectionService } from '../services/selection.service';
 import { PaginationService } from '../services/pagination.service';
 import { AxTableCellHeaderComponent } from './ax-table-cell-header/ax-table-cell-header.component';
 import { SortService } from '../services/sort.service';
+import { CustomCellComponent } from './custom-cell/custom-cell.component';
 
 @NgModule({
     declarations: [
@@ -32,7 +33,8 @@ import { SortService } from '../services/sort.service';
         TableActionsComponent,
         TablePaginatorComponent,
         TableCheckboxCellComponent,
-        AxTableCellHeaderComponent
+        AxTableCellHeaderComponent,
+        CustomCellComponent
     ],
     imports: [
         BrowserModule,
@@ -47,6 +49,9 @@ import { SortService } from '../services/sort.service';
     ],
     exports: [
         AxTableComponent
+    ],
+    entryComponents: [
+        CustomCellComponent
     ],
     providers: [
         SelectionService,

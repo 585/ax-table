@@ -1,6 +1,6 @@
 <ul class="table-actions">
-    <li *ngFor="let action of actions" class="table-actions__action">
-        <button class="table-actions__label" md-button (click)="executeAction(action)">
+    <li *ngFor="let action of actions; let i = index" class="table-actions__action">
+        <button class="table-actions__label" md-button (click)="executeAction(action)" [disabled]="disabledStatuses[i]">
             {{action.label}}
         </button>
     </li>

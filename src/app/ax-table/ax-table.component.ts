@@ -1,5 +1,4 @@
 import {
-    AfterContentInit,
     Component, ContentChildren, EventEmitter, Input, Output, QueryList, ViewChild,
     ViewChildren
 } from '@angular/core';
@@ -13,7 +12,7 @@ import { CustomCellComponent } from '../custom-cell/custom-cell.component';
 export interface IAxTableAction {
     label: string;
     callback(selection: IAxTableRowSelection[]): void;
-    enable(selection: IAxTableRowSelection[]): void;
+    enable(selection: IAxTableRowSelection[]): boolean;
 }
 
 export interface IAxTableSetup {

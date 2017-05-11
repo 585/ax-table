@@ -38,14 +38,18 @@ export class AppComponent {
             ],
             actions: [
                 {
-                    label: 'Action1',
+                    label: 'Open',
                     callback: (selection: IAxTableRowSelection[]) => console.log('hello action!', selection),
-                    enable: (selection: IAxTableRowSelection[]) => console.log('hello enable action', selection)
+                    enable: (selection: IAxTableRowSelection[]) => {
+                        return selection.length > 0 && selection.length < 3;
+                    }
                 },
                 {
-                    label: 'Action2',
+                    label: 'Delete',
                     callback: (selection: IAxTableRowSelection[]) => console.log('hello action!', selection),
-                    enable: (selection: IAxTableRowSelection[]) => console.log('hello enable action', selection)
+                    enable: (selection: IAxTableRowSelection[]) => {
+                        return selection.length > 0;
+                    }
                 }
             ]
         };

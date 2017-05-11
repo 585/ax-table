@@ -20,6 +20,8 @@ import { PaginationService } from '../services/pagination.service';
 import { AxTableCellHeaderComponent } from './ax-table-cell-header/ax-table-cell-header.component';
 import { SortService } from '../services/sort.service';
 import { CustomCellComponent } from './custom-cell/custom-cell.component';
+import { TableBodyComponent } from './table-body/table-body.component';
+import { TableCheckboxMainComponent } from './table-checkbox-main/table-checkbox-main.component';
 
 @NgModule({
     declarations: [
@@ -34,7 +36,9 @@ import { CustomCellComponent } from './custom-cell/custom-cell.component';
         TablePaginatorComponent,
         TableCheckboxCellComponent,
         AxTableCellHeaderComponent,
-        CustomCellComponent
+        CustomCellComponent,
+        TableBodyComponent,
+        TableCheckboxMainComponent
     ],
     imports: [
         BrowserModule,

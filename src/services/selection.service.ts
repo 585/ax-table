@@ -10,11 +10,12 @@ export class SelectionService {
 
     selection: IAxTableRowSelection[];
     $selection: EventEmitter<IAxTableRowSelection[]>;
+    $mainSelection: EventEmitter<boolean>;
 
     constructor() {
         this.selection = [];
         this.$selection = new EventEmitter();
-        // this.$selection.subscribe((vale) => console.log(`>> ${vale}`));
+        this.$mainSelection = new EventEmitter();
     }
 
     addSelectedRow(row: IAxTableRowSelection) {
@@ -30,6 +31,25 @@ export class SelectionService {
             }
         }
         this.$selection.next(this.selection);
+    }
+
+    addSelectedRows(rows: any[]): void {
+        const selection = [];
+        rows.forEach((row, index) => {
+            selection.push({
+                index: index,
+                data: row
+            });
+        });
+        this.selection = selection;
+        this.$selection.emit(this.selection);
+        this.$mainSelection.emit(true);
+    }
+
+    removeAllRows(): void {
+        this.selection = [];
+        this.$selection.emit(this.selection);
+        this.$mainSelection.emit(false);
     }
 
 }

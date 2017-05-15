@@ -52,7 +52,8 @@ import { TableCheckboxMainComponent } from './table-checkbox-main/table-checkbox
         NoopAnimationsModule
     ],
     exports: [
-        AxTableComponent
+        AxTableComponent,
+        CustomCellComponent
     ],
     entryComponents: [
         CustomCellComponent

@@ -35,6 +35,7 @@ export class AxTableComponent {
 
     @ViewChildren(AxTableRowComponent) rows: QueryList<AxTableRowComponent>;
     @ViewChild(AxTableHeaderComponent) header: AxTableHeaderComponent;
+
     @ContentChildren(CustomCellComponent) customCells: QueryList<CustomCellComponent>;
 
     @Input() setup: IAxTableSetup;

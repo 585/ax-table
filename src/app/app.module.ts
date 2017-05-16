@@ -22,6 +22,10 @@ import { SortService } from '../services/sort.service';
 import { CustomCellComponent } from './custom-cell/custom-cell.component';
 import { TableBodyComponent } from './table-body/table-body.component';
 import { TableCheckboxMainComponent } from './table-checkbox-main/table-checkbox-main.component';
+import { ThumbComponent } from './thumb/thumb.component';
+import { ThumbContainerComponent } from './thumb-container/thumb-container.component';
+import { ThumbsRowComponent } from './thumbs-row/thumbs-row.component';
+import { DataToThumbsSetPipe } from '../pipes/data-to-thumbs-set.pipe';
 
 @NgModule({
     declarations: [
@@ -38,7 +42,11 @@ import { TableCheckboxMainComponent } from './table-checkbox-main/table-checkbox
         AxTableCellHeaderComponent,
         CustomCellComponent,
         TableBodyComponent,
-        TableCheckboxMainComponent
+        TableCheckboxMainComponent,
+        ThumbComponent,
+        ThumbContainerComponent,
+        ThumbsRowComponent,
+        DataToThumbsSetPipe
     ],
     imports: [
         BrowserModule,

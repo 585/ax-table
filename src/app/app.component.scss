@@ -1,0 +1,19 @@
+.custom-thumb {
+    &__title {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+
+    &__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__list-item {
+        font-size: .9rem;
+        font-weight: 300;
+        line-height: 22px;
+    }
+}

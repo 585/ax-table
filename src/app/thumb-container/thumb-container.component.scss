@@ -1,0 +1,17 @@
+:host {
+    flex: 1;
+    padding: 0 10px;
+    font-size: 1rem;
+
+    .thumb-container {
+        border: 1px solid #E0E0E0;
+        padding: 10px 15px;
+        position: relative;
+        border-radius: 3px;
+
+        &__checkbox {
+            position: absolute;
+            right: -10px;
+        }
+    }
+}

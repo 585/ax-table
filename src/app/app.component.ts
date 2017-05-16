@@ -56,6 +56,17 @@ export class AppComponent {
         this.data = [
             {name: 'Denis', lastName: 'Havranek', birthday: new Date().setMonth(5), comment: 'Hey lalalala!'},
             {name: 'Denis2', lastName: 'Havranek', birthday: new Date(), comment: 'Hey lalalala!'},
+            {name: 'Denis3', lastName: 'Havranek', birthday: new Date(), comment: 'Hey lalalala!'},
+            {name: 'Denis', lastName: 'Havranek', birthday: new Date().setMonth(5), comment: 'Hey lalalala!'},
+            {name: 'Denis2', lastName: 'Havranek', birthday: new Date(), comment: 'Hey lalalala!'},
+            {name: 'Denis3', lastName: 'Havranek', birthday: new Date(), comment: 'Hey lalalala!'},
+            {name: 'Denis', lastName: 'Havranek', birthday: new Date().setMonth(5), comment: 'Hey lalalala!'},
+            {name: 'Denis2', lastName: 'Havranek', birthday: new Date(), comment: 'Hey lalalala!'},
+            {name: 'Denis3', lastName: 'Havranek', birthday: new Date(), comment: 'Hey lalalala!'},
+            {name: 'Denis', lastName: 'Havranek', birthday: new Date().setMonth(5), comment: 'Hey lalalala!'},
+            {name: 'Denis2', lastName: 'Havranek', birthday: new Date(), comment: 'Hey lalalala!'},
+            {name: 'Denis3', lastName: 'Havranek', birthday: new Date(), comment: 'Hey lalalala!'},
+            {name: 'Denis2', lastName: 'Havranek', birthday: new Date(), comment: 'Hey lalalala!'},
             {name: 'Denis3', lastName: 'Havranek', birthday: new Date(), comment: 'Hey lalalala!'}
         ];
     }

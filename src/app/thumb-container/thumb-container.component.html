@@ -1,0 +1,7 @@
+<div class="thumb-container">
+    <div class="thumb-container__checkbox">
+        <ng-content></ng-content>
+    </div>
+    <ng-template *ngTemplateOutlet="thumb?.template; context: {rowData: rowData}"></ng-template>
+    <p *ngIf="!thumb?.template"> You need to define an 'ax-thumb' component template within you 'ax-table'!</p>
+</div>

@@ -1,14 +1,16 @@
 import {
+    AfterContentInit,
     Component, ContentChild, ContentChildren, EventEmitter, Input, Output, QueryList, ViewChild,
     ViewChildren
 } from '@angular/core';
-import { AxTableRowComponent } from '../ax-table-row/ax-table-row.component';
-import { AxTableHeaderComponent } from '../ax-table-header/ax-table-header.component';
-import { IAxTableRowSelection, SelectionService } from '../../services/selection.service';
-import { IAxTablePagination, PaginationService } from '../../services/pagination.service';
-import { SortService } from '../../services/sort.service';
+import { AxTableRowComponent } from '../table-row/table-row.component';
+import { AxTableHeaderComponent } from '../table-header/table-header.component';
 import { CustomCellComponent } from '../custom-cell/custom-cell.component';
 import { ThumbComponent } from '../thumb/thumb.component';
+import { TableRef } from '../../models/table-ref';
+import { TableService } from '../../services/table.service';
+import { IAxTableRowSelection } from '../../models/table-row-selection.interface';
+import { IAxTablePagination } from '../../models/table-pagination.interface';
 
 export interface IAxTableAction {
     label: string;
@@ -34,10 +36,10 @@ enum AxViewModeEnum {
 
 @Component({
     selector: 'ax-table',
-    templateUrl: './ax-table.component.html',
-    styleUrls: ['./ax-table.component.scss']
+    templateUrl: './table.component.html',
+    styleUrls: ['./table.component.scss']
 })
-export class AxTableComponent {
+export class AxTableComponent implements AfterContentInit {
 
     @ViewChildren(AxTableRowComponent) rows: QueryList<AxTableRowComponent>;
     @ViewChild(AxTableHeaderComponent) header: AxTableHeaderComponent;
@@ -45,22 +47,36 @@ export class AxTableComponent {
     @ContentChildren(CustomCellComponent) customCells: QueryList<CustomCellComponent>;
     @ContentChild(ThumbComponent) thumb: ThumbComponent;
 
-    @Input() setup: IAxTableSetup;
     @Input() data: any[];
+    @Input() setup: IAxTableSetup;
     @Input() viewMode: AxViewModeEnum;
 
     @Output() onPage: EventEmitter<IAxTablePagination>;
     @Output() onSort: EventEmitter<any>;
     @Output() onSelect: EventEmitter<IAxTableRowSelection[]>;
 
-    constructor(
-        private paginationService: PaginationService,
-        private selectionService: SelectionService,
-        private sortService: SortService
-    ) {
-        this.onPage = this.paginationService.$paginator;
-        this.onSelect = this.selectionService.$selection;
-        this.onSort = this.sortService.$sort;
+    table: TableRef;
+
+    constructor(private tableService: TableService) {
+        this.onPage = new EventEmitter();
+        this.onSort = new EventEmitter();
+        this.onSelect = new EventEmitter();
+    }
+
+    ngAfterContentInit() {
+        this.table = this.tableService.create(this.setup).setData(this.data);
+
+        this.table.$paginator.subscribe(paginator => {
+            this.onPage.next(paginator);
+        });
+
+        this.table.$selection.subscribe(selection => {
+            this.onSelect.next(selection);
+        });
+
+        this.table.$sort.subscribe(sort => {
+            this.onSort.next(sort);
+        });
     }
 
     getCustomCell(key: string): CustomCellComponent {

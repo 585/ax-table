@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IAxTableRowSelection } from '../services/selection.service';
-import { IAxTableSetup } from './ax-table/ax-table.component';
+import { IAxTableSetup } from './table/table.component';
+import { IAxTableRowSelection } from '../models/table-row-selection.interface';
 
 @Component({
     selector: 'ax-root',

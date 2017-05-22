@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AxTableActionHeaderComponent } from './ax-table-action-header.component';
+import { AxTableActionHeaderComponent } from './table-action-header.component';
 
 describe('AxTableActionHeaderComponent', () => {
   let component: AxTableActionHeaderComponent;

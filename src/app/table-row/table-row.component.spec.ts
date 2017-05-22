@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AxTableCellComponent } from './ax-table-cell.component';
+import { AxTableRowComponent } from './table-row.component';
 
-describe('AxTableCellComponent', () => {
-  let component: AxTableCellComponent;
-  let fixture: ComponentFixture<AxTableCellComponent>;
+describe('AxTableRowComponent', () => {
+  let component: AxTableRowComponent;
+  let fixture: ComponentFixture<AxTableRowComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AxTableCellComponent ]
+      declarations: [ AxTableRowComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AxTableCellComponent);
+    fixture = TestBed.createComponent(AxTableRowComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,27 +1,31 @@
-import { Component, Input, OnDestroy } from '@angular/core';
-import { SelectionService } from '../../services/selection.service';
+import { AfterContentInit, Component, Input, OnDestroy } from '@angular/core';
 import { MdCheckboxChange } from '@angular/material';
 import { Subscription } from 'rxjs/Subscription';
+import { TableRef } from '../../models/table-ref';
 
 @Component({
     selector: 'ax-table-checkbox-main',
     templateUrl: './table-checkbox-main.component.html',
     styleUrls: ['./table-checkbox-main.component.scss']
 })
-export class TableCheckboxMainComponent implements OnDestroy {
+export class TableCheckboxMainComponent implements AfterContentInit, OnDestroy {
 
-    @Input() data: any;
+    @Input() table: TableRef;
+
     checked: boolean;
     indeterminate: boolean;
     sub: Subscription;
 
-    constructor(private selectionService: SelectionService) {
-        this.sub = selectionService.$selection.subscribe(selection => {
-            this.checked = selection.length !== 0;
-            this.indeterminate = selection.length !== this.data.length && selection.length !== 0;
-        });
+    constructor() {
+
     }
 
+    ngAfterContentInit() {
+        this.sub = this.table.$selection.subscribe(selection => {
+            this.checked = selection.length !== 0;
+            this.indeterminate = selection.length !== this.table.data.length && selection.length !== 0;
+        });
+    }
 
     ngOnDestroy() {
         this.sub.unsubscribe();
@@ -29,9 +33,9 @@ export class TableCheckboxMainComponent implements OnDestroy {
 
     checkboxChanged(event: MdCheckboxChange): void {
         if (event.checked) {
-            this.selectionService.addSelectedRows(this.data);
+            this.table.addSelectedRows();
         } else {
-            this.selectionService.removeAllRows();
+            this.table.removeAllRows();
         }
     }
 }

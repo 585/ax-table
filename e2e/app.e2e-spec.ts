@@ -1,6 +1,6 @@
 import { AxTablePage } from './app.po';
 
-describe('ax-table App', () => {
+describe('table App', () => {
   let page: AxTablePage;
 
   beforeEach(() => {

@@ -6,19 +6,16 @@ import { MdButtonModule, MdCheckboxModule, MdIconModule, MdSelectModule, MdToolt
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { AxTableComponent } from './ax-table/ax-table.component';
-import { AxTableHeaderComponent } from './ax-table-header/ax-table-header.component';
-import { AxTableCellComponent } from './ax-table-cell/ax-table-cell.component';
-import { AxTableRowComponent } from './ax-table-row/ax-table-row.component';
-import { AxTableFooterComponent } from './ax-table-footer/ax-table-footer.component';
-import { AxTableActionHeaderComponent } from './ax-table-action-header/ax-table-action-header.component';
+import { AxTableComponent } from './table/table.component';
+import { AxTableHeaderComponent } from './table-header/table-header.component';
+import { AxTableCellComponent } from './table-cell/table-cell.component';
+import { AxTableRowComponent } from './table-row/table-row.component';
+import { AxTableFooterComponent } from './table-footer/table-footer.component';
+import { AxTableActionHeaderComponent } from './table-action-header/table-action-header.component';
 import { TableActionsComponent } from './table-actions/table-actions.component';
 import { TablePaginatorComponent } from './table-paginator/table-paginator.component';
 import { TableCheckboxCellComponent } from './table-checkbox-cell/table-checkbox-cell.component';
-import { SelectionService } from '../services/selection.service';
-import { PaginationService } from '../services/pagination.service';
-import { AxTableCellHeaderComponent } from './ax-table-cell-header/ax-table-cell-header.component';
-import { SortService } from '../services/sort.service';
+import { AxTableCellHeaderComponent } from './table-cell-header/table-cell-header.component';
 import { CustomCellComponent } from './custom-cell/custom-cell.component';
 import { TableBodyComponent } from './table-body/table-body.component';
 import { TableCheckboxMainComponent } from './table-checkbox-main/table-checkbox-main.component';
@@ -26,6 +23,7 @@ import { ThumbComponent } from './thumb/thumb.component';
 import { ThumbContainerComponent } from './thumb-container/thumb-container.component';
 import { ThumbsRowComponent } from './thumbs-row/thumbs-row.component';
 import { DataToThumbsSetPipe } from '../pipes/data-to-thumbs-set.pipe';
+import { TableService } from '../services/table.service';
 
 @NgModule({
     declarations: [
@@ -61,15 +59,14 @@ import { DataToThumbsSetPipe } from '../pipes/data-to-thumbs-set.pipe';
     ],
     exports: [
         AxTableComponent,
-        CustomCellComponent
+        CustomCellComponent,
+        ThumbComponent
     ],
     entryComponents: [
         CustomCellComponent
     ],
     providers: [
-        SelectionService,
-        PaginationService,
-        SortService
+        TableService
     ],
     bootstrap: [AppComponent]
 })

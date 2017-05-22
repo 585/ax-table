@@ -1,7 +1,7 @@
 <h1>{{title}}</h1>
 
 <h2>Basic Table + Custom Cells</h2>
-<ax-table [setup]="setup" [data]="data" [viewMode]="0" (onPage)="onPage($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)">
+<ax-table [data]="data" [setup]="setup" [viewMode]="0" (onPage)="onPage($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)">
 
     <ax-custom-cell key="name">
         <ng-template #customCell let-data="cellData" let-row="rowData">
@@ -20,8 +20,7 @@
 <br/><br/>
 
 <h2>Basic Table + Thumbs View</h2>
-<ax-table [setup]="setup" [data]="data" [viewMode]="1" (onPage)="onPage($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)">
-
+<ax-table [data]="data" [setup]="setup" [viewMode]="1" (onPage)="onPage($event)" (onSelect)="onSelect($event)" (onSort)="onSort($event)">
     <ax-thumb>
         <ng-template #thumb let-row="rowData">
             <div class="custom-thumb">
@@ -33,5 +32,4 @@
             </div>
         </ng-template>
     </ax-thumb>
-
 </ax-table>

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AxTableCellHeaderComponent } from './ax-table-cell-header.component';
+import { AxTableCellHeaderComponent } from './table-cell-header.component';
 
 describe('AxTableCellHeaderComponent', () => {
   let component: AxTableCellHeaderComponent;

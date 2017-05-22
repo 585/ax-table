@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AxTableFooterComponent } from './ax-table-footer.component';
+import { AxTableComponent } from './table.component';
 
-describe('AxTableFooterComponent', () => {
-  let component: AxTableFooterComponent;
-  let fixture: ComponentFixture<AxTableFooterComponent>;
+describe('AxTableComponent', () => {
+  let component: AxTableComponent;
+  let fixture: ComponentFixture<AxTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AxTableFooterComponent ]
+      declarations: [ AxTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AxTableFooterComponent);
+    fixture = TestBed.createComponent(AxTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

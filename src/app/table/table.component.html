@@ -1,0 +1,34 @@
+<div class="ax-table">
+    <ax-table-action-header>
+        <ax-table-actions [table]="table"></ax-table-actions>
+        <button class="ax-table__mode-switch" md-mini-fab (click)="toggleViewMode()">@</button>
+    </ax-table-action-header>
+
+    <ax-table-header>
+        <ax-table-checkbox-main [table]="table"></ax-table-checkbox-main>
+        <ax-table-cell-header [key]="col.key" *ngFor="let col of table?.setup.columns" [table]="table">
+            <span [mdTooltip]="col.tooltip">{{col.label}}</span>
+        </ax-table-cell-header>
+    </ax-table-header>
+
+    <ax-table-body>
+        <div *ngIf="viewMode === 0">
+            <ax-table-row *ngFor="let object of table?.$data | async; let i = index">
+                <ax-table-checkbox-cell [rowIndex]="i" [table]="table" [data]="object"></ax-table-checkbox-cell>
+                <ax-table-cell *ngFor="let col of table?.setup.columns" [customCell]="getCustomCell(col.key)"
+                   [rowData]="object" [cellData]="object[col.key]">
+                        {{object[col.key]}}
+                </ax-table-cell>
+            </ax-table-row>
+        </div>
+        <div *ngIf="viewMode === 1">
+            <ax-thumbs-row *ngFor="let set of table?.$data | async | dataToThumbsSet">
+                <ax-thumb-container *ngFor="let object of set; let i = index" [thumb]="thumb" [rowData]="object">
+                    <ax-table-checkbox-cell [rowIndex]="i" [table]="table" [data]="object"></ax-table-checkbox-cell>
+                </ax-thumb-container>
+            </ax-thumbs-row>
+        </div>
+    </ax-table-body>
+
+    <ax-table-footer [table]="table"></ax-table-footer>
+</div>

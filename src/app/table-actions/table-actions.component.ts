@@ -1,7 +1,8 @@
 import { AfterContentInit, Component, Input, OnDestroy } from '@angular/core';
-import { IAxTableRowSelection, SelectionService } from '../../services/selection.service';
-import { IAxTableAction } from '../ax-table/ax-table.component';
+import { IAxTableAction } from '../table/table.component';
 import { Subscription } from 'rxjs/Subscription';
+import { TableRef } from '../../models/table-ref';
+import { IAxTableRowSelection } from '../../models/table-row-selection.interface';
 
 @Component({
     selector: 'ax-table-actions',
@@ -10,29 +11,31 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class TableActionsComponent implements OnDestroy, AfterContentInit {
 
-    @Input() actions: IAxTableAction[];
+    @Input() table: TableRef;
+
     disabledStatuses: boolean[];
     sub: Subscription;
 
-    constructor(private selectionService: SelectionService) {
-        this.sub = this.selectionService.$selection.subscribe(
-            (selection: IAxTableRowSelection[]) => {
-                this.actions.forEach((action: IAxTableAction, index) => {
-                    this.disabledStatuses[index] = !action.enable(selection);
-                });
-            }
-        );
+    constructor() {
+
     }
 
     ngAfterContentInit() {
         this.disabledStatuses = [];
-        this.actions.forEach((action: IAxTableAction) => {
+        this.sub = this.table.$selection.subscribe(
+            (selection: IAxTableRowSelection[]) => {
+                this.table.setup.actions.forEach((action: IAxTableAction, index) => {
+                    this.disabledStatuses[index] = !action.enable(selection);
+                });
+            }
+        );
+        this.table.setup.actions.forEach((action: IAxTableAction) => {
             this.disabledStatuses.push(!action.enable([]));
         });
     }
 
     executeAction(action: IAxTableAction): void {
-        action.callback(this.selectionService.selection);
+        action.callback(this.table.selection);
     }
 
     ngOnDestroy() {

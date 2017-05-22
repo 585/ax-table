@@ -1,33 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { PaginationService } from '../../services/pagination.service';
+import { AfterContentInit, Component, Input } from '@angular/core';
 import { MdSelectChange } from '@angular/material';
+import { TableRef } from '../../models/table-ref';
 
 @Component({
     selector: 'ax-table-paginator',
     templateUrl: './table-paginator.component.html',
     styleUrls: ['./table-paginator.component.scss']
 })
-export class TablePaginatorComponent implements OnInit {
+export class TablePaginatorComponent implements AfterContentInit {
+
+    @Input() table: TableRef;
 
     pageSize: number;
 
-    constructor(private paginationService: PaginationService) {
-        this.pageSize = paginationService.paginator.pageSize;
+    constructor() {
+
     }
 
-    ngOnInit() {
+    ngAfterContentInit() {
+        this.table.$paginator.subscribe((paginator) => {
+            this.pageSize = paginator.pageSize;
+        });
     }
 
     pageUp() {
-        this.paginationService.pageUp();
+        this.table.pageUp();
     }
 
     pageDown() {
-        this.paginationService.pageDown();
+        this.table.pageDown();
     }
 
     setPageSize(event: MdSelectChange) {
-        this.paginationService.setPageSize(event.value);
+        this.table.setPageSize(event.value);
     }
 
 }

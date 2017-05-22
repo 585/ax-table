@@ -23,7 +23,9 @@ export class TableCheckboxMainComponent implements AfterContentInit, OnDestroy {
     ngAfterContentInit() {
         this.sub = this.table.$selection.subscribe(selection => {
             this.checked = selection.length !== 0;
-            this.indeterminate = selection.length !== this.table.data.length && selection.length !== 0;
+            if (this.table.data) {
+                this.indeterminate = selection.length !== this.table.data.length && selection.length !== 0;
+            }
         });
     }
 

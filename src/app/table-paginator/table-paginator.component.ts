@@ -18,7 +18,7 @@ export class TablePaginatorComponent implements AfterContentInit {
     }
 
     ngAfterContentInit() {
-        this.table.$paginator.subscribe((paginator) => {
+        this.table.$pagination.subscribe((paginator) => {
             this.pageSize = paginator.pageSize;
         });
     }

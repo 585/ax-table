@@ -1,6 +1,7 @@
 import {
     AfterContentInit,
-    Component, ContentChild, ContentChildren, EventEmitter, Input, Output, QueryList, ViewChild,
+    Component, ContentChild, ContentChildren, EventEmitter, Input, OnChanges, OnDestroy, Output, QueryList,
+    SimpleChange, ViewChild,
     ViewChildren
 } from '@angular/core';
 import { AxTableRowComponent } from '../table-row/table-row.component';
@@ -11,6 +12,7 @@ import { TableRef } from '../../models/table-ref';
 import { TableService } from '../../services/table.service';
 import { IAxTableRowSelection } from '../../models/table-row-selection.interface';
 import { IAxTablePagination } from '../../models/table-pagination.interface';
+import { Subscription } from 'rxjs/Subscription';
 
 export interface IAxTableAction {
     label: string;
@@ -39,7 +41,7 @@ enum AxViewModeEnum {
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss']
 })
-export class AxTableComponent implements AfterContentInit {
+export class AxTableComponent implements AfterContentInit, OnDestroy, OnChanges {
 
     @ViewChildren(AxTableRowComponent) rows: QueryList<AxTableRowComponent>;
     @ViewChild(AxTableHeaderComponent) header: AxTableHeaderComponent;
@@ -56,27 +58,41 @@ export class AxTableComponent implements AfterContentInit {
     @Output() onSelect: EventEmitter<IAxTableRowSelection[]>;
 
     table: TableRef;
+    subs: Subscription[];
 
     constructor(private tableService: TableService) {
+        this.viewMode = 0;
         this.onPage = new EventEmitter();
         this.onSort = new EventEmitter();
         this.onSelect = new EventEmitter();
     }
 
+    ngOnChanges(changes) {
+        if (changes.data && !changes.data.firstChange) {
+            this.table.setData(changes.data.currentValue);
+        }
+    }
+
     ngAfterContentInit() {
         this.table = this.tableService.create(this.setup).setData(this.data);
 
-        this.table.$paginator.subscribe(paginator => {
-            this.onPage.next(paginator);
-        });
+        this.subs = [
+            this.table.$pagination.subscribe(paginator => {
+                this.onPage.next(paginator);
+            }),
 
-        this.table.$selection.subscribe(selection => {
-            this.onSelect.next(selection);
-        });
+            this.table.$selection.subscribe(selection => {
+                this.onSelect.next(selection);
+            }),
 
-        this.table.$sort.subscribe(sort => {
-            this.onSort.next(sort);
-        });
+            this.table.$sort.subscribe(sort => {
+                this.onSort.next(sort);
+            })
+        ];
+    }
+
+    ngOnDestroy() {
+        this.subs.forEach(sub => sub.unsubscribe());
     }
 
     getCustomCell(key: string): CustomCellComponent {

@@ -6,19 +6,20 @@ import { IAxTableRowSelection } from './table-row-selection.interface';
 export class TableRef {
 
     $data: BehaviorSubject<any[]>;
-    $paginator: BehaviorSubject<IAxTablePagination>;
+    $pagination: BehaviorSubject<IAxTablePagination>;
     $mainSelection: BehaviorSubject<boolean>;
     $selection: BehaviorSubject<IAxTableRowSelection[]>;
     $sort: BehaviorSubject<any>;
 
     data: any[];
-    paginator: IAxTablePagination;
+    pagination: IAxTablePagination;
     selection: IAxTableRowSelection[];
+
     private sort: any;
 
     constructor(public setup: IAxTableSetup) {
         this.selection = [];
-        this.paginator = {
+        this.pagination = {
             pageSize: 10,
             page: 1,
             offset: 1
@@ -27,7 +28,7 @@ export class TableRef {
         this.$data = new BehaviorSubject([]);
         this.$selection = new BehaviorSubject(this.selection);
         this.$mainSelection = new BehaviorSubject(false);
-        this.$paginator = new BehaviorSubject(this.paginator);
+        this.$pagination = new BehaviorSubject(this.pagination);
         this.$sort = new BehaviorSubject(this.sort);
     }
 
@@ -67,12 +68,12 @@ export class TableRef {
         this.sort = {};
         this.$sort = new BehaviorSubject(this.sort);
 
-        this.paginator = {
+        this.pagination = {
             pageSize: 10,
             page: 1,
             offset: 1
         };
-        this.$paginator = new BehaviorSubject(this.paginator);
+        this.$pagination = new BehaviorSubject(this.pagination);
     }
 
     sortColumn(key: string): string {
@@ -92,20 +93,20 @@ export class TableRef {
     }
 
     pageUp() {
-        this.paginator.page++;
-        this.$paginator.next(this.paginator);
+        this.pagination.page++;
+        this.$pagination.next(this.pagination);
     }
 
     pageDown() {
-        if (this.paginator.page !== 1) {
-            this.paginator.page--;
+        if (this.pagination.page !== 1) {
+            this.pagination.page--;
         }
-        this.$paginator.next(this.paginator);
+        this.$pagination.next(this.pagination);
     }
 
     setPageSize(value: number) {
-        this.paginator.pageSize = value;
-        this.$paginator.next(this.paginator);
+        this.pagination.pageSize = value;
+        this.$pagination.next(this.pagination);
     }
 
     setData(data: any[]): TableRef {

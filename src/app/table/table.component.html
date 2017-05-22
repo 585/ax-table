@@ -1,7 +1,7 @@
 <div class="ax-table">
     <ax-table-action-header>
-        <ax-table-actions [table]="table"></ax-table-actions>
-        <button class="ax-table__mode-switch" md-mini-fab (click)="toggleViewMode()">@</button>
+        <ax-table-actions [table]="table" *ngIf="table.setup.actions"></ax-table-actions>
+        <button class="ax-table__mode-switch" md-mini-fab (click)="toggleViewMode()">M</button>
     </ax-table-action-header>
 
     <ax-table-header>

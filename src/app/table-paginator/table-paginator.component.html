@@ -7,7 +7,12 @@
             </md-option>
       </md-select>
     </span>
-    <span class="table-paginator__page-count">1-10 of 100</span>
+    <span class="table-paginator__page-count">
+        <span>{{table.pagination.offset + 1}}</span>
+        -
+        <span>{{table.totalRecords < (table.pagination.offset + table.pagination.pageSize) ? table.totalRecords : (table.pagination.offset + table.pagination.pageSize)}}</span>
+        <span *ngIf="table.totalRecords !== undefined">of {{table.totalRecords}}</span>
+    </span>
     <span class="table-paginator__page-switch">
         <span class="table-paginator__page-switch-left" (click)="pageDown()"><</span>
         <span class="table-paginator__page-switch-right" (click)="pageUp()">></span>

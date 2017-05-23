@@ -2,34 +2,41 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { IAxTableSetup } from '../app/table/table.component';
 import { IAxTablePagination } from './table-pagination.interface';
 import { IAxTableRowSelection } from './table-row-selection.interface';
+import { EventEmitter } from '@angular/core';
 
 export class TableRef {
 
     $data: BehaviorSubject<any[]>;
-    $pagination: BehaviorSubject<IAxTablePagination>;
-    $mainSelection: BehaviorSubject<boolean>;
-    $selection: BehaviorSubject<IAxTableRowSelection[]>;
-    $sort: BehaviorSubject<any>;
+    $pagination: EventEmitter<IAxTablePagination>;
+    $mainSelection: EventEmitter<boolean>;
+    $selection: EventEmitter<IAxTableRowSelection[]>;
+    $sort: EventEmitter<any>;
 
     data: any[];
     pagination: IAxTablePagination;
     selection: IAxTableRowSelection[];
+    sort: any;
+    totalRecords: number = 10;
 
-    private sort: any;
-
-    constructor(public setup: IAxTableSetup) {
+    constructor(public setup?: IAxTableSetup) {
         this.selection = [];
         this.pagination = {
             pageSize: 10,
             page: 1,
-            offset: 1
+            offset: 0
         };
         this.sort = {};
+
         this.$data = new BehaviorSubject([]);
-        this.$selection = new BehaviorSubject(this.selection);
-        this.$mainSelection = new BehaviorSubject(false);
-        this.$pagination = new BehaviorSubject(this.pagination);
-        this.$sort = new BehaviorSubject(this.sort);
+        this.$selection = new EventEmitter();
+        this.$mainSelection = new EventEmitter();
+        this.$pagination = new EventEmitter();
+        this.$sort = new EventEmitter();
+    }
+
+    setSetup(setup: IAxTableSetup): TableRef {
+        this.setup = setup;
+        return this;
     }
 
     addSelectedRow(row: IAxTableRowSelection) {
@@ -64,16 +71,6 @@ export class TableRef {
         this.selection = [];
         this.$selection.next(this.selection);
         this.$mainSelection.next(false);
-
-        this.sort = {};
-        this.$sort = new BehaviorSubject(this.sort);
-
-        this.pagination = {
-            pageSize: 10,
-            page: 1,
-            offset: 1
-        };
-        this.$pagination = new BehaviorSubject(this.pagination);
     }
 
     sortColumn(key: string): string {
@@ -94,12 +91,14 @@ export class TableRef {
 
     pageUp() {
         this.pagination.page++;
+        this.setPageOffset();
         this.$pagination.next(this.pagination);
     }
 
     pageDown() {
         if (this.pagination.page !== 1) {
             this.pagination.page--;
+            this.setPageOffset();
         }
         this.$pagination.next(this.pagination);
     }
@@ -113,5 +112,9 @@ export class TableRef {
         this.data = data;
         this.$data.next(this.data);
         return this;
+    }
+
+    private setPageOffset() {
+        this.pagination.offset = (this.pagination.page - 1) * this.pagination.pageSize;
     }
 }

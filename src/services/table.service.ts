@@ -6,7 +6,7 @@ import { IAxTableSetup } from '../app/table/table.component';
 export class TableService {
     constructor() {}
 
-    create(setup: IAxTableSetup): TableRef {
+    create(setup?: IAxTableSetup): TableRef {
         return new TableRef(setup);
     }
 }

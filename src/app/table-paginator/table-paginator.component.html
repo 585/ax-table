@@ -1,8 +1,8 @@
 <span class="table-paginator">
     <span class="table-paginator__page-size">
         <span>Rows per page:</span>
-        <md-select [(ngModel)]="pageSize" (change)="setPageSize($event)">
-            <md-option *ngFor="let pageSize of [10, 20, 50]" [value]="pageSize">
+        <md-select [(ngModel)]="table.pagination.pageSize" (change)="setPageSize($event)">
+            <md-option *ngFor="let pageSize of [5, 10, 20, 50]" [value]="pageSize">
               {{pageSize}}
             </md-option>
       </md-select>

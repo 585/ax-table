@@ -16,7 +16,7 @@ export class TableRef {
     pagination: IAxTablePagination;
     selection: IAxTableRowSelection[];
     sort: any;
-    totalRecords: number = 10;
+    totalRecords: number;
 
     constructor(public setup?: IAxTableSetup) {
         this.selection = [];

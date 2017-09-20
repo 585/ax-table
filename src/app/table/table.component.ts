@@ -23,13 +23,13 @@ export interface IAxTableSetup {
     actions: IAxTableAction[];
 }
 
-interface IAxTableColumns {
+export interface IAxTableColumns {
     key: string;
     label: string;
     tooltip: string;
 }
 
-enum AxViewModeEnum {
+export enum AxViewModeEnum {
     TABLE,
     THUMBS
 }
